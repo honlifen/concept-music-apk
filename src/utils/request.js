@@ -15,6 +15,7 @@ const getSavedBase = () => {
 const DEFAULT_BASE = '/api'
 
 // APK 默认连接本地服务器 (Termux 运行 kugoumusicapi)
+// 注意：kugoumusicapi 的路由是 /top/playlist 而非 /api/top/playlist
 const DEFAULT_API_SERVER = 'http://127.0.0.1:3000'
 
 // 支持从 localStorage 读取自定义服务器地址
@@ -26,7 +27,7 @@ const resolveBase = () => {
       return saved.replace(/\/+$/, '') + '/api'
     } catch {}
   }
-  return DEFAULT_API_SERVER + '/api'
+  return DEFAULT_API_SERVER
 }
 
 const request = axios.create({
