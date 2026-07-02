@@ -1,0 +1,12 @@
+{
+  "appId": "com.conceptmusic.apk",
+  "appName": "概念音乐",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https",
+    "cleartext": true
+  },
+  "android": {
+    "allowMixedContent": true
+  }
+}
