@@ -132,9 +132,9 @@ export const usePlayerStore = defineStore('player', {
             album_audio_id: song.album_audio_id || song._album_audio_id || 0,
           } 
         })
-        if (res?.data?.url) {
-          setCachedUrl(hash, this.currentQuality, res.data)
-          return res.data
+        if (res?.url) {
+          setCachedUrl(hash, this.currentQuality, res)
+          return res
         }
       } catch (e) {
         console.error('[Player] URL resolve failed:', e.message)
