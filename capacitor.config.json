@@ -8,13 +8,5 @@
   },
   "android": {
     "allowMixedContent": true
-  },
-  "cordova": {
-    "preferences": {
-      "NodeJSMobileRoot": "nodejs-project"
-    }
-  },
-  "includePlugins": [
-    "nodejs-mobile-cordova"
-  ]
+  }
 }
