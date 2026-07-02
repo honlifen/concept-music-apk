@@ -188,7 +188,7 @@ const doSearch = async () => {
   results.value = null
 
   try {
-    const res = await request.get('/search', { params: { keyword: kw, page: 1, pagesize: 20 }, silent: true })
+    const res = await request.get('/search', { params: { keywords: kw, page: 1, pagesize: 20 }, silent: true })
     const data = res?.data || {}
     results.value = {
       songs: (data.lists || []).slice(0, 15).map(s => ({

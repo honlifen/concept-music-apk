@@ -119,13 +119,21 @@ export const usePlayerStore = defineStore('player', {
       })
     },
 
-    async resolveUrl(hash, quality = 'hq') {
-      const cached = getCachedUrl(hash, quality)
+    async resolveUrl(song) {
+      const hash = (song.hash || song._hash || '').toLowerCase()
+      const cached = getCachedUrl(hash, this.currentQuality)
       if (cached) return cached
       try {
-        const res = await request.get('/song/url', { params: { hash, quality } })
+        const res = await request.get('/song/url', { 
+          params: { 
+            hash,
+            quality: this.currentQuality,
+            album_id: song.album_id || song._album_id || 0,
+            album_audio_id: song.album_audio_id || song._album_audio_id || 0,
+          } 
+        })
         if (res?.data?.url) {
-          setCachedUrl(hash, quality, res.data)
+          setCachedUrl(hash, this.currentQuality, res.data)
           return res.data
         }
       } catch (e) {
@@ -152,7 +160,8 @@ export const usePlayerStore = defineStore('player', {
         singer_id: song.singer_id || song._singer_id || '',
         cover: song.cover || song._cover || '',
         album: song.album || song._album || '',
-        album_id: song.album_id || song._album_id || '',
+        album_id: song.album_id || song._album_id || 0,
+        album_audio_id: song.album_audio_id || song._album_audio_id || 0,
         is_vip: song.is_vip || song._is_vip || false,
         is_paid: song.is_paid || song._is_paid || false,
         _singers: song._singers || (song.singer ? [{ id: String(song.singer_id || ''), name: song.singer }] : [])
@@ -166,7 +175,7 @@ export const usePlayerStore = defineStore('player', {
         this.playlist.push(normalized)
       }
 
-      const data = await this.resolveUrl(hash, this.currentQuality)
+      const data = await this.resolveUrl(normalized)
       if (!data?.url) {
         this.isLoading = false
         this.isError = true
