@@ -1,0 +1,8 @@
+{
+  "name": "概念音乐 API",
+  "env": {
+    "platform": "android"
+  },
+  "buildCommand": "cd server && npm install",
+  "startCommand": "cd server && node app.js"
+}
