@@ -17,6 +17,8 @@
     "@capacitor/core": "^8.4.1",
     "@tailwindcss/vite": "^4.3.2",
     "axios": "^1.18.1",
+    "crypto-js": "^4.2.0",
+    "nodejs-mobile-cordova": "^0.4.3",
     "pinia": "^3.0.4",
     "tailwindcss": "^4.3.2",
     "vue": "^3.5.39",
